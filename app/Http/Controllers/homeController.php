@@ -18,4 +18,10 @@ class homeController extends Controller
 
         return view("visualizar-noticias");
     }
+
+    public function contato()
+    {
+
+        return view("contato");
+    }
 }
