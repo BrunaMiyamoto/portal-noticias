@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\NoticiaController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     //rotas do gerenciamento de noticias 
 
     Route::get("/dashboard/noticias", [NoticiaController::class, "index"])->name("admin.noticias.index");
+    Route::get("/dashboard/categorias", [CategoriaController::class, "index"])->name("admin.categorias.index");
 });
 
 require __DIR__ . '/auth.php';
