@@ -10,7 +10,8 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
                     <h1 class="text-[20px] font-bold">Lista de Categorias</h1>
-                    <a href="#" class="bg-slate-950 text-white px-4 py-2 rounded">+ Adicionar Categoria</a>
+                    <a href="{{ route('admin.categorias.cadastrar') }}"
+                        class="bg-slate-950 text-white px-4 py-2 rounded">+ Adicionar Categoria</a>
                 </div>
 
                 <div class="p-6 overflow-x-auto">

@@ -26,7 +26,12 @@ Route::middleware('auth')->group(function () {
     //rotas do gerenciamento de noticias 
 
     Route::get("/dashboard/noticias", [NoticiaController::class, "index"])->name("admin.noticias.index");
+
+    Route::get("/dashboard/noticias/cadastrar", [NoticiaController::class, "create"])->name("admin.noticias.cadastrar");
+
+    //rotas do gerenciamento de categorias 
     Route::get("/dashboard/categorias", [CategoriaController::class, "index"])->name("admin.categorias.index");
+    Route::get("/dashboard/categorias/cadastrar", [CategoriaController::class, "create"])->name("admin.categorias.cadastrar");
 });
 
 require __DIR__ . '/auth.php';

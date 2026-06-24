@@ -15,7 +15,8 @@
 
                     <h1 class="text-[20px] font-bold">Lista de Noticias</h1>
 
-                    <a href="#" class="bg-slate-950 text-white px-4 py-2 rounded">+ Adicionar Noticia</a>
+                    <a href="{{ route('admin.noticias.cadastrar') }}" class="bg-slate-950 text-white px-4 py-2 rounded">+
+                        Adicionar Noticia</a>
                 </div>
 
                 <div class="p-6 overflow-x-auto">
