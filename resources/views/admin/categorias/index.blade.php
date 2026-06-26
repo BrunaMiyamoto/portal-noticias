@@ -34,9 +34,19 @@
                                     <td class="hidden sm:table-cell">{{ $c->descricao }}</td>
                                     <td>{{ $c->cor }}</td>
 
-                                    <td class="text-center">
-                                        <a href="#" class="btn-editar">Editar</a>
-                                        <a href="#" class="btn-excluir">Excluir</a>
+                                    <td class="text-center flex gap-1">
+                                        <a href={{ route('admin.categorias.editar', $c->id) }}
+                                            class="btn-editar">Editar</a>
+
+                                        <form action="{{ route('admin.categorias.excluir', $c->id) }}" method="post">
+
+                                            @method('delete')
+                                            @csrf
+
+                                            <button type="submit" class="btn-excluir"
+                                                onclick="return confirm('Deseja realmente excluir a categoria?')">Excluir</button>
+                                        </form>
+
                                     </td>
 
                                 </tr>

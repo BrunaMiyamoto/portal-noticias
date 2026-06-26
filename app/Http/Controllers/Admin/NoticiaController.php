@@ -42,7 +42,7 @@ class NoticiaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view("admin.noticias.editar");
     }
 
     /**
@@ -58,6 +58,6 @@ class NoticiaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return "funcionou .....deletou o registro";
     }
 }
