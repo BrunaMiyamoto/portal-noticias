@@ -19,8 +19,10 @@
 
                 <div class="p-6 overflow-x-auto">
 
-                    <form action="#" method="post">
+                    <form action="{{ route('admin.noticias.armazenar') }}" method="post" enctype="multipart/form-data">
                         {{-- todo formulario com dados sensiveis precisam estar dentro de um form com method post --}}
+
+                        @csrf
                         @include('admin.noticias._form')
 
                     </form>
