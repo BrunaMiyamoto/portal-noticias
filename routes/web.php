@@ -29,15 +29,21 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/dashboard/noticias/cadastrar", [NoticiaController::class, "create"])->name("admin.noticias.cadastrar");
 
+    Route::post("/dashboard/noticias/cadastrar", [NoticiaController::class, "store"])->name("admin.noticias.armazenar");
+
     Route::get("/dashboard/noticias/editar/{id}", [NoticiaController::class, "edit"])->name("admin.noticias.editar");
 
     Route::delete("/dashboard/noticias/excluir/{id}", [NoticiaController::class, "destroy"])->name("admin.noticias.excluir");
 
 
     //rotas do gerenciamento de categorias 
+
     Route::get("/dashboard/categorias", [CategoriaController::class, "index"])->name("admin.categorias.index");
+
     Route::get("/dashboard/categorias/cadastrar", [CategoriaController::class, "create"])->name("admin.categorias.cadastrar");
+
     Route::get("/dashboard/categorias/editar/{id}", [CategoriaController::class, "edit"])->name("admin.categorias.editar");
+
     Route::delete("/dashboard/categorias/excluir/{id}", [CategoriaController::class, "destroy"])->name("admin.categorias.excluir");
 });
 
