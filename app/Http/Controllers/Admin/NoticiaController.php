@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use App\Models\Noticia;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,10 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        return view("admin.noticias.cadastrar");
+        $categorias = Categoria::orderBy("nome", "asc")->pluck("nome", "id");
+        return view("admin.noticias.cadastrar", [
+            'categorias' => $categorias
+        ]);
     }
 
     /**
