@@ -44,7 +44,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get("/dashboard/categorias/cadastrar", [CategoriaController::class, "create"])->name("admin.categorias.cadastrar");
 
+    Route::post("/dashboard/categorias/cadastrar", [CategoriaController::class, "store"])->name("admin.categorias.armazenar");
+
     Route::get("/dashboard/categorias/editar/{id}", [CategoriaController::class, "edit"])->name("admin.categorias.editar");
+
+    Route::put("/dashboard/categorias/atualizar/{id}", [CategoriaController::class, "update"])->name("admin.categorias.atualizar");
 
     Route::delete("/dashboard/categorias/excluir/{id}", [CategoriaController::class, "destroy"])->name("admin.categorias.excluir");
 });

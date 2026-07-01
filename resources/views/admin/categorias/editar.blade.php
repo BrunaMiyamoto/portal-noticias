@@ -20,8 +20,10 @@
 
                 <div class="p-6 overflow-x-auto">
 
-                    <form action="#" method="post">
+                    <form action="{{ route('admin.categorias.atualizar', $categoria->id) }}" method="post">
 
+                        @method('put')
+                        @csrf
                         @include('admin.categorias._form')
 
                     </form>
