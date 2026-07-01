@@ -19,7 +19,11 @@
 
                 <div class="p-6 overflow-x-auto">
 
-                    <form action="#" method="post">
+                    <form action="{{ route('admin.noticias.atualizar', $noticia->id) }}" method="post"
+                        enctype="multipart/form-data">
+
+                        @method('put')
+                        @csrf
                         {{-- todo formulario com dados sensiveis precisam estar dentro de um form com method post --}}
                         @include('admin.noticias._form')
 

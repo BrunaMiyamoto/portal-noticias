@@ -7,6 +7,7 @@ use App\Models\Categoria;
 use App\Models\Noticia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class NoticiaController extends Controller
 {
@@ -29,7 +30,8 @@ class NoticiaController extends Controller
     {
         $categorias = Categoria::orderBy("nome", "asc")->pluck("nome", "id");
         return view("admin.noticias.cadastrar", [
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            "noticia" => new Noticia()
         ]);
     }
 
@@ -73,7 +75,14 @@ class NoticiaController extends Controller
      */
     public function edit(string $id)
     {
-        return view("admin.noticias.editar");
+        $categorias = Categoria::orderBy("nome", "asc")->pluck("nome", "id");
+
+        $noticia = Noticia::findOrFail($id); //faz um select e caso dê fail gera um erro 404 
+
+        return view("admin.noticias.editar", [
+            "categorias" => $categorias,
+            "noticia" => $noticia
+        ]);
     }
 
     /**
@@ -81,7 +90,38 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+
+        $request->validate([
+
+            "categoria_id" => "required",
+            "titulo" => "required|min:10|max:255",
+            "resumo" => "required",
+            "conteudo" => "required",
+            "imagem" => "nullable|image|mimes:jpge,jpg, png,webp|max:2048" // aqui tiramos o required pois já está vindo uma imagem 
+        ]);
+
+        $noticia = Noticia::findOrFail($id); //já criamos o objeto no edit e aqui só buscamos ele 
+
+        $noticia->titulo = $request->titulo;
+        $noticia->resumo = $request->resumo;
+        $noticia->conteudo = $request->conteudo;
+        $noticia->categoria_id = $request->categoria_id;
+        $noticia->ativo = $request->ativo;
+        $noticia->usuario_id = Auth::user()->id;
+
+        if ($request->hasFile("imagem")) {
+
+            if ($noticia->imagem) {
+                Storage::disk("public")->delete($noticia->imagem); // sempre vai apagar a imagem anterior e substituir pela nova para evitar sujeira 
+            }
+
+            $noticia->imagem = $request->file("imagem")->store("noticia", "public");
+        }
+
+        $noticia->save();
+
+        return redirect()->route("admin.noticias.index");
     }
 
     /**
