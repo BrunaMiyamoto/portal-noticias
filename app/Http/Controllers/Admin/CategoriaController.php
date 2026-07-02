@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
-use App\Models\Noticia;
 use Illuminate\Http\Request;
-use Pest\Concerns\Retrievable;
+
 
 class CategoriaController extends Controller
 {
